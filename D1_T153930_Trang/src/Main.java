@@ -74,7 +74,6 @@ public class Main extends JFrame {
 				y = y + 30;
 				count = count + 1;	
 				
-				
 			}
 		});
 	}
