@@ -16,39 +16,37 @@ public class Main extends JFrame {
 
 	private JDesktopPane contentPane;
 
-
-
 	/**
 	 * Create the frame.
 	 */
 	public Main() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		JMenu mnNewMenu = new JMenu("File");
 		menuBar.add(mnNewMenu);
-		
+
 		JMenuItem mntmNew = new JMenuItem("New");
 		mnNewMenu.add(mntmNew);
-		
+
 		JMenuItem mntmOpen = new JMenuItem("Open");
 		mnNewMenu.add(mntmOpen);
-		
+
 		JMenuItem mntmSave = new JMenuItem("Save");
 		mnNewMenu.add(mntmSave);
-		
+
 		JMenuItem mntmExit = new JMenuItem("Exit");
 		mnNewMenu.add(mntmExit);
-		
+
 		JMenu mnEdit = new JMenu("Edit");
 		menuBar.add(mnEdit);
-		
+
 		JMenu mnTool = new JMenu("Tool");
 		menuBar.add(mnTool);
-		
+
 		JMenu mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
 		contentPane = new JDesktopPane();
@@ -56,22 +54,17 @@ public class Main extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		
+
 		// Xu y su kien
 		mntmNew.addActionListener(new ActionListener() {
-			public void actionerFormed(ActionListener args){
-				JInternalFrame newWindow = new JInternalFrame("New Window 1", true, true , true);
-						newWindow.setVisible(true);
-						newWindow.setSize(300, 300);
-						contentPane.add(newWindow);
-			}
-			
-			
-			
+		
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				JInternalFrame newWindow = new JInternalFrame("New Window 1", true, true, true);
+				newWindow.setVisible(true);
+				newWindow.setSize(300, 300);
+				contentPane.add(newWindow);
 			}
 		});
 	}
