@@ -56,6 +56,7 @@ public class Main extends JFrame {
 		setContentPane(contentPane);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
+		
 		// Xu y su kien
 		mntmNew.addActionListener(new ActionListener() {
 		
