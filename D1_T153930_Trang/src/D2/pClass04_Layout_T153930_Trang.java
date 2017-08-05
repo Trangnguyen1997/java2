@@ -105,6 +105,7 @@ public class pClass04_Layout_T153930_Trang extends JFrame {
 		panel_2.add(textField_2);
 		textField_2.setColumns(10);
 		
+		
 		textField_3 = new JTextField();
 		textField_3.setBounds(31, 247, 379, 20);
 		panel_2.add(textField_3);
