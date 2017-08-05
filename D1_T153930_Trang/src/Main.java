@@ -15,6 +15,7 @@ import javax.swing.JMenuItem;
 public class Main extends JFrame {
 
 	private JDesktopPane contentPane;
+	private int count;
 
 	/**
 	 * Create the frame.
@@ -61,10 +62,17 @@ public class Main extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JInternalFrame newWindow = new JInternalFrame("New Window 1", true, true, true);
+				int x = 0,y = 0;
+				JInternalFrame newWindow = new JInternalFrame("New Window "+" "+count, true, true, true);
 				newWindow.setVisible(true);
 				newWindow.setSize(300, 300);
 				contentPane.add(newWindow);
+				newWindow.moveToFront();
+				newWindow.setBounds(x, y, 300, 300);
+				x = x + 30;
+				y = y + 30;
+				count = count + 1;
+						
 			}
 		});
 	}
