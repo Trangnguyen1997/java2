@@ -118,6 +118,7 @@ public class Ex01_T154199_Loc extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
+	
 
 	private void login() {
 		String userName = txtUsername.getText();
