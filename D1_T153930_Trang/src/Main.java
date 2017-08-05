@@ -59,7 +59,7 @@ public class Main extends JFrame {
 		// Xu y su kien
 		mntmNew.addActionListener(new ActionListener() {
 		
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int x = 0,y = 0;
@@ -71,8 +71,7 @@ public class Main extends JFrame {
 				newWindow.setBounds(x, y, 300, 300);
 				x = x + 30;
 				y = y + 30;
-				count = count + 1;
-						
+				count = count + 1;		
 			}
 		});
 	}
