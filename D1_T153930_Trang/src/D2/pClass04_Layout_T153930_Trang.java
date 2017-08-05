@@ -199,7 +199,6 @@ public class pClass04_Layout_T153930_Trang extends JFrame {
 		main.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		main.setLocationRelativeTo(null);
 		
-		
 	}
 }
 				
