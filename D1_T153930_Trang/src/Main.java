@@ -56,15 +56,13 @@ public class Main extends JFrame {
 		setContentPane(contentPane);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-		
 		// Xu y su kien
 		mntmNew.addActionListener(new ActionListener() {
-		
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int x = 0,y = 0;
-				JInternalFrame newWindow = new JInternalFrame("New Window "+" "+count, true, true, true);
+				int x = 0, y = 0;
+				JInternalFrame newWindow = new JInternalFrame("New Window " + " " + count, true, true, true);
 				newWindow.setVisible(true);
 				newWindow.setSize(300, 300);
 				contentPane.add(newWindow);
@@ -72,8 +70,8 @@ public class Main extends JFrame {
 				newWindow.setBounds(x, y, 300, 300);
 				x = x + 30;
 				y = y + 30;
-				count = count + 1;	
-				
+				count = count + 1;
+
 			}
 		});
 	}
