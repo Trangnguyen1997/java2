@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 import javax.swing.JColorChooser;
@@ -29,7 +30,7 @@ import javax.swing.JTextArea;
 public class MyNotepad_Trang extends JFrame {
 	JMenuBar mnbBar;
 	JMenu mnuFile, mnuTools;
-	JMenuItem mniOpen, mniExit, mniPopup;
+	JMenuItem mniOpen, mniExit, mniAnalyze;
 	JTextArea txaContent;
 	JScrollPane scrPane;
 
@@ -40,14 +41,14 @@ public class MyNotepad_Trang extends JFrame {
 		mnuTools = new JMenu("Tools");
 		mniOpen = new JMenuItem("Open");
 		mniExit = new JMenuItem("Exit");
-		mniPopup = new JMenuItem("Popup");
+		mniAnalyze = new JMenuItem("Analyze");
 
 		// them mni vao mnuFile
 		mnuFile.add(mniOpen);
 		mnuFile.addSeparator();
 		mnuFile.add(mniExit);
 		// them mni vao mnuFormat
-		mnuTools.add(mniPopup);
+		mnuTools.add(mniAnalyze);
 
 		// them mnuFile va mnuFormat vao mnbBar
 		mnbBar.add(mnuFile);
@@ -97,6 +98,96 @@ public class MyNotepad_Trang extends JFrame {
 	// tao ham Popup
 	public void Popup() {
 
+		int countSV = 0;
+		int count70 = 0;
+		int count45 = 0;
+		int countfoc = 0;
+
+		double dtbMin = 10;
+		double dtbMax = 0;
+		
+
+		String hotenmin = null;
+		String hotenmax = null;
+
+		String maxfoc = null;
+
+		String[] lines = txaContent.getText().split("\n");
+		DecimalFormat diemFormat = new DecimalFormat("#0.00");
+		
+		for (int i = 1; i < lines.length; i++) {
+			// System.out.println(lines[i]);
+			String[] fields = lines[i].split(",");
+			if (fields.length == 7) {
+				String stt = fields[0];
+				String sid = fields[1];
+				String lastName = fields[2];
+				String firstName = fields[3];
+
+				int foc = Integer.parseInt(fields[4]);
+				int introNW = Integer.parseInt(fields[5]);
+				int adp = Integer.parseInt(fields[6]);
+
+				// Tinh diem trung binh
+				double dtb = (foc + introNW + adp) * 1.0 / 3;
+				
+
+
+				if (dtb >= 7.0) {
+					count70++;
+				}
+
+				if (dtb < 4.5) {
+					count45++;
+				}
+				countSV++;
+
+				if (dtb < dtbMin) {
+					dtbMin = dtb;
+					hotenmin = lastName + firstName;
+				}
+
+				if (dtb > dtbMax) {
+					dtbMax = dtb;
+					hotenmax = lastName + firstName;
+				}
+				
+				if (foc > countfoc) {
+					countfoc = foc;
+					maxfoc = lastName + firstName;
+					;
+				}
+
+				if (dtb > dtbMax) {
+					maxfoc = lastName + firstName;
+				}
+
+				// System.out.println(sid);
+
+			}
+
+		}
+		String message = "So sinh vien co trong danh sach: " + countSV +"\n";
+		message+= "So sinh vien co DTB > 7.0: " + count70 +"\n";
+		message+= "So sinh vien co DTB < 4.5: " + count45 +"\n";
+		message+= "DTB nho nhat: " + dtbMin+"\n";
+		message+= "Ten SV co DTB nho nhat: " + hotenmin+"\n";
+		message+= "DTB lon nhat: " + diemFormat.format(dtbMax)+"\n";
+		message+= "Ten SV co DTB lon nhat: " + hotenmax+"\n";
+		message+= "Diem FOC cao nhat: " + countfoc +"\n";
+		message+= "Nhung Sv co diem FOC cao nhat:\n" + maxfoc +"\n";
+		JOptionPane.showMessageDialog(MyNotepad_Trang.this, message);
+		
+		/*System.out.println("So sinh vien co trong danh sach: " + countSV);
+		System.out.println("So sinh vien co DTB > 7.0: " + count70);
+		System.out.println("So sinh vien co DTB < 4.5: " + count45);
+		System.out.println("DTB nho nhat: " + dtbMin);
+		System.out.println("Ten SV co DTB nho nhat: " + hotenmin);
+		System.out.println("DTB lon nhat: " + dtbMax);
+		System.out.println("Ten SV co DTB lon nhat: " + hotenmax);
+		System.out.println("Diem FOC cao nhat: " + countfoc);
+		System.out.println("Nhung Sv co diem FOC cao nhat:\n" + maxfoc);*/
+
 	}
 
 	public MyNotepad_Trang() {
@@ -107,8 +198,7 @@ public class MyNotepad_Trang extends JFrame {
 		setLocationRelativeTo(null);
 		// goi ham tao menu
 		Init();
-		// tao vung hien thi van ban
-		// van ban hien thi trong text area
+		//
 		txaContent = new JTextArea();
 		// hien thanh cuon neu van ban dai
 		scrPane = new JScrollPane(txaContent);
@@ -128,15 +218,15 @@ public class MyNotepad_Trang extends JFrame {
 					// xu ly khi nhan nut exit
 					Close();
 				}
-				if (e.getSource() == mniPopup) {
-
+				if (e.getSource() == mniAnalyze) {
+					Popup();
 				}
 			}
 		};
 		// them su kien action cho cac mni
 		mniOpen.addActionListener(action);
 		mniExit.addActionListener(action);
-		mniPopup.addActionListener(action);
+		mniAnalyze.addActionListener(action);
 		// xu ly su kien dong ung dung
 		this.addWindowListener(new WindowAdapter() {
 			public void windownClosing(WindowEvent e) {
