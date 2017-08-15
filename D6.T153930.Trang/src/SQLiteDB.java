@@ -72,6 +72,7 @@ public class SQLiteDB {
 			System.out.format("%3d %-40s %7.2f %4d\n", rs.getInt("productid"), rs.getString("productname"),rs.getDouble("unitprice"),rs.getInt("unitinstock"));
 					
 			}
+			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}

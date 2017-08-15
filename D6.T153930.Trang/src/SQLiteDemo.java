@@ -23,6 +23,7 @@ public class SQLiteDemo {
 		//update("TV", 5, 6000, 7, 79);
 		delete(79);
 		getAllProducts();
+		
 	}
 
 	private static Connection connect() {
