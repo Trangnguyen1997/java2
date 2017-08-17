@@ -27,7 +27,7 @@ public class SQLiteDemo {
 	}
 
 	private static Connection connect() {
-		String url = "jdbc:sqlite:sales.db";
+		String url = "jdbc:sqlite:foc2warehouse.db";
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url);
@@ -55,18 +55,23 @@ public class SQLiteDemo {
 		}
 	}
 
-	public static void insert(String name, int categoryid, int pPrice, int pUnitInStock) {
-		String sql = "INSERT INTO products (productname, categoryid, unitprice, unitinstock)" + "VALUES(?,?,?,?)";
-		try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setString(1, name);
-			pstmt.setInt(2, categoryid);
-			pstmt.setDouble(3, pPrice);
-			pstmt.setInt(4, pUnitInStock);
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
+	public static void insert(String pCode, String name, int categoryid, int brandid, int unitiOfMeasure, double unitprice, String description){
+		String sql = "INSERT INTO products (productcode, productname, categoryid, brandid, unitofmeasure)" + "VALUES(?,?,?,?,?,?)";
+		try(Connection conn = connect();
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+					pstmt.setString(1, pCode);
+					pstmt.setString(2, name);
+					pstmt.setDouble(3, categoryid);
+					pstmt.setInt(4, brandid);
+					pstmt.setInt(5, unitiOfMeasure);
+					pstmt.setDouble(6, unitprice);
+					pstmt.setString(7, description);
+					pstmt.executeUpdate();
+		}catch (SQLException e){
 			System.out.println(e.getMessage());
-		}
+				}
 	}
+
 
 	public static void update(String name, int categoryid, double pPrice, int pUnitInStock, int pProductid) {
 		String sql = "UPDATE products SET productname = ?, categoryid = ?, unitprice = ?, unitinstock = ? WHERE productid = ?";
