@@ -1,10 +1,15 @@
 package dataobject;
 
 public class Category {
-
 	private int categoryId;
 	private String categoryName;
 	
+	public Category(){};
+	public Category(int categoryId, String categoryName) {
+		super();
+		this.categoryId = categoryId;
+		this.categoryName = categoryName;
+	}
 	public int getCategoryId() {
 		return categoryId;
 	}
@@ -20,7 +25,6 @@ public class Category {
 	@Override
 	public String toString() {
 		return categoryName;
-		
-		
 	}
+	
 }

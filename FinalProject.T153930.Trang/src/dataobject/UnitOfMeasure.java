@@ -1,35 +1,34 @@
 package dataobject;
 
 public class UnitOfMeasure {
-	private int unitmeasureid;
+	private int id;
 	private String name;
-
-	public UnitOfMeasure(int unitmeasureid, String name) {
+	
+	public  UnitOfMeasure(){
+		id = -1;
+		name = null;
+	}
+	public UnitOfMeasure(int id, String name) {
 		super();
-		this.unitmeasureid = unitmeasureid;
+		this.id = id;
 		this.name = name;
 	}
-
 	@Override
 	public String toString() {
 		return name;
 	}
-
-	public int getUnitmeasure() {
-		return unitmeasureid;
+	public int getId() {
+		return id;
 	}
-
-	public void setId(int unitmeasureid) {
-		this.unitmeasureid = unitmeasureid;
+	public void setId(int id) {
+		this.id = id;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+
 }
-
-
